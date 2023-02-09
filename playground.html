@@ -8,7 +8,19 @@
   </head>
   <body>
     <h1>Hello Vue brother of Django</h1>
+    <hr>
     <div id="app">
+      <h1>Counter</h1>
+      <h3> {{num_count}} </h3>
+      <label for="amount"> Put Number to increase </label>
+      <input type="text" name="amount" id="" 
+      v-bind:value="increament_amount"
+      v-on:input="changeIncreamentAmount">
+      <button v-on:click="incrementCount">Increment number</button>
+      <hr>
+
+
+
     <p v-if="message.length % 2 === 0">Even: {{ message.toUpperCase() }}</p>  
     <p v-else>Odd: {{ message }}</p> 
     
@@ -38,6 +50,8 @@
         {
           data(){
             return{
+              num_count: 10,
+              increament_amount: 11,
               message:'Hello finally from Vue',
               list_of_numbers: [1, 2, 3, 4 ],
               embeded_list: [
@@ -45,6 +59,15 @@
                 {name: 'Sojib', roll:2, marks: [5, 35, 25, 65]},
                 {name: 'Sarwar', roll:1, marks: [7, 65, 99, 23]},
               ]
+            }
+          },
+          methods: {
+            changeIncreamentAmount(event){
+              this.increament_amount = Number(event.target.value)
+
+            },
+            incrementCount(){
+              this.num_count += this.increament_amount
             }
           }
         }
