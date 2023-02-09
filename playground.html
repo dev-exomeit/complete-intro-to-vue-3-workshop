@@ -8,7 +8,27 @@
   </head>
   <body>
     <h1>Hello Vue brother of Django</h1>
-    <div id="app">{{ message }}</div>
+    <div id="app">
+    <p v-if="message.length % 2 === 0">Even: {{ message.toUpperCase() }}</p>  
+    <p v-else>Odd: {{ message }}</p> 
+    
+    <ul>
+      <li v-for="num in list_of_numbers"> {{ num * Math.random()}}</li>
+    </ul>
+
+    <ul v-for="student in embeded_list">
+      <li> Roll: {{ student.roll }}</li>
+      <li> Name: {{ student.name }}</li>
+
+      <ul>
+        <p>Marks</p>
+        <li v-for="mark in student.marks"> {{ mark }}</li>
+      </ul>
+
+    </ul>
+
+
+    </div>
 
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script>
@@ -18,7 +38,13 @@
         {
           data(){
             return{
-              message:'Hello finally from Vue'
+              message:'Hello finally from Vue',
+              list_of_numbers: [1, 2, 3, 4 ],
+              embeded_list: [
+                {name: 'Sarwar', roll:1, marks: [2, 45, 55, 23]},
+                {name: 'Sojib', roll:2, marks: [5, 35, 25, 65]},
+                {name: 'Sarwar', roll:1, marks: [7, 65, 99, 23]},
+              ]
             }
           }
         }
