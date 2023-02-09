@@ -10,9 +10,23 @@
     <div id="app">
       <p v-if="characters.length === 0">There is no character here</p>
       <ul v-else>
-        <li v-for="character in characters"> {{ character.name }}</li>
+        <li v-for="character in characters"> 
+          <p> {{ character.name }} </p>
+          <button @click="favoriteCharacter(character)">Favorite</button>
+        </li>
       </ul>
 
+      <h2>Favorite Characters</h2>
+      <ul v-if="favoriteList.length > 0">
+        <li v-for="fav in favoriteList"> {{fav.name}} </li>
+
+      </ul>
+      <p v-else>No favorite characters added yet</p>
+
+      <h2>New character</h2>
+      <pre>{{newCharacter}}</pre>
+      <label for="character-name">Name</label>
+      <input type="text" v-model="newCharacter.name" @keyup.enter="addNewCharacter">
       <!-- important thing that I faced in django like for the name of the author -->
       <!-- the last logic part is important -->
       <p>
@@ -26,14 +40,32 @@
 <script>
   Vue.createApp({
     data: () => ({
+      newCharacter:{
+        name: ''
+
+      },
       characters: [
       {name: 'Sheldon'},
       {name: 'Leonard'},
       {name: 'Penny'},
       {name: 'Haward'},
       {name: 'Rajesh'},
-      ]
-    })
+      ],
+      favoriteList: [],
+    }),
+    methods: {
+      addNewCharacter(){
+        this.characters.push(this.newCharacter)
+        this.newCharacter = { name: '' }
+
+      },
+
+      favoriteCharacter(character){
+        this.favoriteList.push(character)
+
+      }
+
+    }
   }).mount('#app')
 
 </script>
