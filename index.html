@@ -4,7 +4,38 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>The Big Bang Theory</title>
   </head>
-  <body></body>
+  <body>
+    <div id="app">
+      <p v-if="characters.length === 0">There is no character here</p>
+      <ul v-else>
+        <li v-for="character in characters"> {{ character.name }}</li>
+      </ul>
+
+      <!-- important thing that I faced in django like for the name of the author -->
+      <!-- the last logic part is important -->
+      <p>
+        <span v-for="(character, index) in characters">
+           {{ character.name }}{{ index === characters.length - 1 ? '' : ', '}}
+          </span>
+      </p>
+    </div>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+  Vue.createApp({
+    data: () => ({
+      characters: [
+      {name: 'Sheldon'},
+      {name: 'Leonard'},
+      {name: 'Penny'},
+      {name: 'Haward'},
+      {name: 'Rajesh'},
+      ]
+    })
+  }).mount('#app')
+
+</script>
+  </body>
 </html>
