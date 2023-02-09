@@ -11,11 +11,15 @@
     <hr>
     <div id="app">
       <h1>Counter</h1>
-      <h3> {{num_count}} </h3>
+      <h3> Reseult: {{num_count}} </h3>
+      <h3> add number  {{increament_amount}} </h3>
       <label for="amount"> Put Number to increase </label>
-      <input type="text" name="amount" id="" 
+      <!-- <input type="number" name="amount" id="" 
       v-bind:value="increament_amount"
-      v-on:input="changeIncreamentAmount">
+      v-on:input="changeIncreamentAmount"
+      > -->
+      <input type="number" name="amount" id="" 
+      v-model.number="increament_amount">
       <button v-on:click="incrementCount">Increment number</button>
       <hr>
 
@@ -62,10 +66,10 @@
             }
           },
           methods: {
-            changeIncreamentAmount(event){
-              this.increament_amount = Number(event.target.value)
+            // changeIncreamentAmount(event){
+            //   this.increament_amount = Number(event.target.value)
 
-            },
+            // },
             incrementCount(){
               this.num_count += this.increament_amount
             }
